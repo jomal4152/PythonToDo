@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class = "row">
+    <div class = "col-md-6">
+        <h1 class = "p-3">Enter Task</h1>
+        <form action = "" method = "POST" class="shadow pt-2 rounded">
+            {% csrf_token %}
+            <div class = "form-group p-2">
+                <input type = "text" class = "form-control" name = "name" placeholder = "Task Name">
+            </div>
+            <div class = "form-group p-2">
+                <input type = "text" class = "form-control" name = "priority" placeholder = "Priority">
+            </div>
+            <div class = "form-group p-2">
+                <input type = "date" class = "form-control" name = "date" placeholder = "Date">
+            </div>
+            <div class = "form-group p-2">
+                <input type = "submit" class = "btn btn-success" Value = "Submit">
+            </div>
+        </form>
+    </div>
+    <div class = "col-md-6">
+        <h1 class = "p-3">Task Details</h1>
+        {% for tasks in tasks %}
+        <div class = "card shadow m-3">
+            <div class = "card-body">
+                <h3 class = "card-text">
+                    {{tasks.name}}<br>Priority : {{tasks.priority}}<br>{{tasks.date}}
+                </h3>
+                <a class = "btn bg-success p-2 text-white" href="{% url 'delete' tasks.id %}">Delete</a>
+                <a class = "btn bg-success p-2 text-white" href="{% url 'update' tasks.id %}">Update</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

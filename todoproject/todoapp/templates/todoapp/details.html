@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Task Details</h1>
+
+<div class = "card shadow m-3">
+    <div class = "card-body">
+        <h3 class = "card-text">
+            {{task.name}}<br>Priority : {{task.priority}}<br>{{task.date}}
+        </h3>
+        <a class = "btn bg-success p-2 text-white" href = "{% url 'delete' task.id %}">Delete</a>
+        <a class = "btn bg-success p-2 text-white" href = "{% url 'update' task.id %}">Update</a>
+    </div>
+</div>
+{% endblock %}
